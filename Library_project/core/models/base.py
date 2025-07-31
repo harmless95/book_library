@@ -3,9 +3,10 @@ from sqlalchemy import MetaData
 
 from core.config import settings
 from utils.case_converter import camel_case_to_snake_case
+from .mixins.int_id_primary_key import IntIdPk
 
 
-class Base(DeclarativeBase):
+class Base(IntIdPk, DeclarativeBase):
     __abstract__ = True
 
     metadata = MetaData(
