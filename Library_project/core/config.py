@@ -36,7 +36,7 @@ class Settings(BaseSettings):
     model_config = ConfigDict(from_attributes=True)
     run: RunConfig = RunConfig()
     api: ApiPrefix = ApiPrefix()
-    db: ApiPrefix = DataBaseConfig
+    db: DataBaseConfig
 
 
 settings = Settings()
