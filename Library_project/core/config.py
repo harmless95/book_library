@@ -1,5 +1,5 @@
-from pydantic_settings import BaseSettings
-from pydantic import ConfigDict, BaseModel, PostgresDsn
+from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic import BaseModel, PostgresDsn
 
 
 class RunConfig(BaseModel):
@@ -33,7 +33,12 @@ class DataBaseConfig(BaseModel):
 
 
 class Settings(BaseSettings):
-    model_config = ConfigDict(from_attributes=True)
+    model_config = SettingsConfigDict(
+        env_file=(".venv.template", ".venv"),
+        case_sensitive=False,
+        env_nested_delimiter="__",
+        env_prefix="APP_CONFIG__",
+    )
     run: RunConfig = RunConfig()
     api: ApiPrefix = ApiPrefix()
     db: DataBaseConfig
